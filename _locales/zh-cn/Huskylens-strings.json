@@ -1,0 +1,51 @@
+{
+   "huskylens.initI2c|block":"HuskyLens通过I2C初始化直到成功",
+   "huskylens.initMode|block":"HuskyLens切换到|%mode算法 直到成功",
+   "huskylens.request|block":"HuskyLens请求一次数据存入结果",
+   "huskylens.isLearned|block":"HuskyLens从结果中获取ID|%ID是否已学习?",
+   "huskylens.isAppear|block":"HuskyLens从结果中获取ID|%ID|%Ht是否在画面中?",
+   "huskylens.readeBox|block":"HuskyLens从结果中获取ID|%ID方框的参数|%number1",
+   "huskylens.readeArrow|block":"HuskyLens从结果中获取ID|%ID箭头的参数|%number1",
+   "huskylens.getIds|block":"HuskyLens从结果中获取 已学ID总数",
+   "huskylens.getBox|block":"HuskyLens从结果中获取|%Ht总数",
+   "huskylens.getBox_S|block":"HuskyLens从结果中获取ID|%ID|%Ht总数",
+   "huskylens.readeBox_index|block":"HuskyLens从结果中获取ID|%ID第|%index个方框的参数|%number1",
+   "huskylens.readeArrow_index|block":"HuskyLens从结果中获取ID|%ID第|%index个箭头的参数|%number1",
+   "Content2.xOrigin|block":"X起点",
+   "Content2.yOrigin|block":"Y起点",
+   "Content2.xTarget|block":"X终点",
+   "Content2.yTarget|block":"Y终点",
+   "Content4.xOrigin|block": "X起点",
+   "Content4.yOrigin|block": "Y起点",
+   "Content4.xTarget|block": "X终点",
+   "Content4.yTarget|block": "Y终点",
+   "HUSKYLENSResultType_t.HUSKYLENSResultBlock|block":"方框",
+   "HUSKYLENSResultType_t.HUSKYLENSResultArrow|block":"箭头",
+   "Content1.xCenter|block":"X中心",
+   "Content1.yCenter|block":"Y中心",
+   "Content1.width|block":"长",
+   "Content1.height|block":"宽",
+   "Content3.xCenter|block": "X中心",
+   "Content3.yCenter|block": "Y中心",
+   "Content3.width|block": "长",
+   "Content3.height|block": "宽",
+   "protocolAlgorithm.ALGORITHM_FACE_RECOGNITION|block":"人脸识别",
+   "protocolAlgorithm.ALGORITHM_OBJECT_TRACKING|block":"物体追踪",
+   "protocolAlgorithm.ALGORITHM_OBJECT_RECOGNITION|block":"物体识别",
+   "protocolAlgorithm.ALGORITHM_LINE_TRACKING|block":"巡线",
+   "protocolAlgorithm.ALGORITHM_COLOR_RECOGNITION|block":"颜色识别",
+   "protocolAlgorithm.ALGORITHM_TAG_RECOGNITION|block":"标签识别",
+   "huskylens.isAppear_s|block":"HuskyLens从结果中获取|%Ht是否在画面中?",
+   "huskylens.readBox_s|block":"HuskyLens从结果中获取靠近中心方框的|%deta参数",
+   "huskylens.readArrow_s|block":"HuskyLens从结果中获取靠近中心箭头的|%deta参数",
+   "huskylens.readBox_ss|block":"HuskyLens从结果中获取第|%index个方框|%deta参数",
+   "huskylens.readArrow_ss|block":"HuskyLens从结果中获取第|%index个箭头|%deta参数"
+
+
+
+
+
+
+
+
+}
