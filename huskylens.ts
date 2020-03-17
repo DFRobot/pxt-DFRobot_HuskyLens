@@ -477,7 +477,7 @@ namespace huskylens {
     export function readBox_ss(index:number, deta:Content3):number{
         let hk_x
          let hk_i=index-1
-         if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_BLOCK){
+         if (protocolPtr[0][0] == protocolCommand.COMMAND_RETURN_BLOCK){
             switch (deta) {
                 case 1:
                     hk_x = protocolPtr[hk_i][1]; break;
@@ -502,7 +502,7 @@ namespace huskylens {
     export function readArrow_ss(index:number, deta:Content4):number{
         let hk_x
         let hk_i=index-1
-        if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_ARROW){
+        if (protocolPtr[0][0] == protocolCommand.COMMAND_RETURN_ARROW){
             switch (deta) {
                 case 1:
                     hk_x = protocolPtr[hk_i][1]; break;
