@@ -1,33 +1,76 @@
-# pxt-huskylens ![Build status badge](https://github.com/tangjie133/pxt-huskylens/workflows/MakeCode/badge.svg)
+# HuskyLens
 
+[HuskyLens is an easy-to-use ai vision sensor with six built-in functions: face recognition, object tracking, object recognition, line tracking, color recognition, and label (qr code) recognition.](https://www.dfrobot.com.cn/goods-2050.html)
 
+## Basic usage
 
-## 使用此插件
+* HuskyLens I2C initialization and pattern selection.
 
-此仓库可以作为 **插件** 添加到 MakeCode 中。
+```blocks
 
-* 打开 https://makecode.microbit.org/
-* 点击 **新项目**
-* 点击齿轮图标菜单下的 **扩展**
-* 搜索此仓库的 URL 并导入
+    huskylens.initI2c()
+    huskylens.initMode(protocolAlgorithm.ALGORITHM_FACE_RECOGNITION)
 
-## 编辑此插件
+```
 
-在 MakeCode 中编辑此仓库。
+* HuskyLens requests the data and stores the requested data in the result for later use.
 
-* 打开 https://makecode.microbit.org/
-* 点击 **导入**，然后点击 **导入 URL**
-* 粘贴仓库 URL 地址并单击"导入"
+```blocks
 
-## Blocks preview
+    basic.forever(function () {
+        huskylens.request()
+    })
 
-This section shows the blocks code from the last commit in master.
+```
 
-![A rendered view of the blocks](https://github.com/tangjie133/pxt-huskylens/raw/master/.makecode/blocks.png)
+* HuskyLens retrieves the desired result from the result（For example, get the X center of the ID1 box）
 
-## 支持的目标
+```blocks
+
+    huskylens.initI2c()
+    huskylens.initMode(protocolAlgorithm.ALGORITHM_FACE_RECOGNITION)
+    basic.forever(function () {
+        huskylens.request()
+        if (huskylens.isLearned(1)) {
+            if (huskylens.isAppear(1, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
+                serial.writeValue("box", huskylens.readeBox(1, Content1.xCenter))
+            }
+        }
+    })
+
+```
+
+* HuskyLens retrieves the parameters of the center box on the screen from the result
+
+```blocks
+
+    huskylens.initI2c()
+    huskylens.initMode(protocolAlgorithm.ALGORITHM_FACE_RECOGNITION)
+    basic.forever(function () {
+        huskylens.request()
+        serial.writeValue("box", huskylens.readBox_s(Content3.ID))
+    })
+
+```
+
+* HuskyLens takes the parameters of the NTH box from the result
+
+```blocks
+    huskylens.initI2c()
+    huskylens.initMode(protocolAlgorithm.ALGORITHM_FACE_RECOGNITION)
+    basic.forever(function () {
+        huskylens.request()
+        serial.writeValue("box", huskylens.readBox_ss(1, Content3.ID))
+    })
+
+```
+## License
+
+MIT
+
+Copyright (c) 2020, microbit/micropython Chinese community  
+
+## Supported targets
 
 * for PXT/microbit
-* for PXT/microbit
-（包搜索需要上述元数据。）
-
+(The metadata above is needed for package search.)
