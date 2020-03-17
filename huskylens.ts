@@ -7,8 +7,8 @@
  * @copyright    MIT Lesser General Public License
  * 
  * @author [email](jie.tang@dfrobot.com)
- * @version  V0.0.
- * @date  2019-12-16
+ * @version  V0.0.5
+ * @date  2020-3-17
 */
 // 在此处添加您的代码
 enum Content1 {
@@ -532,33 +532,24 @@ namespace huskylens {
     }
     //
     function husky_lens_protocol_write_begin(command = 0) {
-
-        //send_buffer= [0]
         send_fail = false;
         send_buffer[HEADER_0_INDEX] = 0x55;
         send_buffer[HEADER_1_INDEX] = 0xAA;
         send_buffer[ADDRESS_INDEX] = 0x11;
         send_buffer[COMMAND_INDEX] = command;
-
         send_index = CONTENT_INDEX;
-
         return send_buffer;
     }
     //
     function protocolWrite(buffer: Buffer) {
-        //serial.writeNumber(buffer[4])
-        //serial.writeLine("")
         pins.i2cWriteBuffer(0x32, buffer, false);
     }
     //
 
     function processReturn() {
         if (!wait(protocolCommand.COMMAND_RETURN_INFO)) return false;
-        //protocolReadReturnInfo(protocolInfo);
         protocolReadFiveInt16(protocolCommand.COMMAND_RETURN_INFO);
-
         // protocolPtr = (Protocol_t *) realloc(protocolPtr, protocolInfo.protocolSize * sizeof(Protocol_t));
-
         for (let i = 0; i < Protocol_t[1]; i++) {
             //serial.writeNumber(12)
             //serial.writeLine("")
@@ -567,7 +558,6 @@ namespace huskylens {
             else if (protocolReadFiveInt161(i, protocolCommand.COMMAND_RETURN_ARROW)) continue;
             else return false;
         }
-
         return true;
     }
     //   
@@ -579,14 +569,10 @@ namespace huskylens {
                 if (command) {
 
                     if (husky_lens_protocol_read_begin(command)) {
-                        //serial.writeNumber(3)
-                        //serial.writeLine("")
                         return true;
                     }
                 }
                 else {
-                    //serial.writeNumber(4)
-                    //serial.writeLine("")
                     return true;
                 }
             }
@@ -595,9 +581,6 @@ namespace huskylens {
     }
     //
     function husky_lens_protocol_read_begin(command = 0) {
-
-        //serial.writeNumber(receive_buffer[COMMAND_INDEX])
-        //serial.writeLine("")
         if (command == receive_buffer[COMMAND_INDEX]) {
             content_current = CONTENT_INDEX;
             content_read_end = false;
@@ -623,11 +606,8 @@ namespace huskylens {
         let buf = pins.createBuffer(16)
         if (m_i == 16) {
             buf = pins.i2cReadBuffer(0x32, 16, false);
-            //for (let i = 0; i < 16; i++)M_buf[i] = buf[i]
             m_i = 0;
         }
-        //serial.writeNumber(buf[4])
-        //serial.writeLine("")
         for (let i = m_i; i < 16; i++) {
             if (husky_lens_protocol_receive(buf[i])) {
                 m_i++;
@@ -639,29 +619,21 @@ namespace huskylens {
     }
     //
     function husky_lens_protocol_receive(data: number): boolean {
-        //serial.writeNumber(data)
-        //serial.writeLine("")
         switch (receive_index) {
             case HEADER_0_INDEX:
                 if (data != 0x55) { receive_index = 0; return false; }
                 receive_buffer[HEADER_0_INDEX] = 0x55;
-                //serial.writeNumber(receive_buffer[0])
                 break;
             case HEADER_1_INDEX:
                 if (data != 0xAA) { receive_index = 0; return false; }
                 receive_buffer[HEADER_1_INDEX] = 0xAA;
                 break;
             case ADDRESS_INDEX:
-
                 receive_buffer[ADDRESS_INDEX] = data;
-                //serial.writeNumber(receive_buffer[2])
                 break;
             case CONTENT_SIZE_INDEX:
-
                 if (data >= FRAME_BUFFER_SIZE - PROTOCOL_SIZE) { receive_index = 0; return false; }
                 receive_buffer[CONTENT_SIZE_INDEX] = data;
-                //serial.writeNumber(receive_buffer[3])
-                //serial.writeLine("")
                 break;
             default:
                 receive_buffer[receive_index] = data;
@@ -669,7 +641,6 @@ namespace huskylens {
                 if (receive_index == receive_buffer[CONTENT_SIZE_INDEX] + CONTENT_INDEX) {
                     content_end = receive_index;
                     receive_index = 0;
-                    //serial.writeNumber(receive_buffer[4])
                     return validateCheckSum();
 
                 }
@@ -691,7 +662,6 @@ namespace huskylens {
     // 
     function protocolReadFiveInt16(command = 0) {
         if (husky_lens_protocol_read_begin(command)) {
-
             Protocol_t[0] = command;
             Protocol_t[1] = husky_lens_protocol_read_int16();
             Protocol_t[2] = husky_lens_protocol_read_int16();
@@ -739,8 +709,6 @@ namespace huskylens {
     }
     // 
     function countLearnedIDs() {
-        //serial.writeNumber(Protocol_t[2])
-        //serial.writeLine("")
         return Protocol_t[2]
     }
     //
@@ -818,13 +786,11 @@ namespace huskylens {
     }
     //
     function writeAlgorithm(algorithmType: number) {
-
         protocolWriteOneInt16(algorithmType, protocolCommand.COMMAND_REQUEST_ALGORITHM);
         return wait(protocolCommand.COMMAND_RETURN_OK);
     }
 
     function writeLearn(algorithmType: number) {
-
         protocolWriteOneInt16(algorithmType, protocolCommand.COMMAND_REQUEST_LEARN);
         return wait(protocolCommand.COMMAND_RETURN_OK);
     }
