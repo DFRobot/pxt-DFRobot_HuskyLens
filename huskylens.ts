@@ -45,6 +45,8 @@ enum Content3 {
     height = 4
 }
 enum Content4 {
+    //% block="ID"
+    ID = 5,
     //% block=" xOrigin"
     xOrigin = 1,
     //% block="yOrigin"
@@ -52,9 +54,8 @@ enum Content4 {
     //% block="xTarget"
     xTarget = 3,
     //% block="yTarget"
-    yTarget = 4,
-    //% block="ID"
-    ID = 5
+    yTarget = 4
+    
 }
 //
 enum HUSKYLENSResultType_t {
@@ -63,6 +64,7 @@ enum HUSKYLENSResultType_t {
     //%block="arrow"
     HUSKYLENSResultArrow = 2,
 }
+
 enum protocolCommand {
     COMMAND_REQUEST = 0x20,
     COMMAND_REQUEST_BLOCKS = 0x21,
@@ -129,6 +131,11 @@ namespace huskylens {
 
     let command: number
     let content: number
+
+    /**
+     * HuskyLens requests the data and stores it in the result.
+     */
+
     //% block="HuskyLens request once enter the result"
     //% weight=80
     export function request(): void {
@@ -137,6 +144,7 @@ namespace huskylens {
     }
     /**
      * @param ID to ID ,eg: 1
+     * 
      */
     //% block="HuskyLens get from result ID|%ID have learned?"
     //% weight=75
@@ -422,7 +430,6 @@ namespace huskylens {
                 }
         }
         else hk_x = -1
-       
         return hk_x;
     }
 
@@ -431,18 +438,21 @@ namespace huskylens {
     export function readArrow_s(deta:Content4):number{
         let hk_x
         let hk_y = readArrowCenterParameterDirect()
-        switch (deta) {
-            case 1:
-                hk_x = protocolPtr[hk_y][1]; break;
-            case 2:
-                hk_x = protocolPtr[hk_y][2]; break;
-            case 3:
-                hk_x = protocolPtr[hk_y][3]; break;
-            case 4:
-                hk_x = protocolPtr[hk_y][4]; break;
-            default:
-                hk_x = protocolPtr[hk_y][5];
+        if(hk_y!=-1){
+            switch (deta) {
+                case 1:
+                    hk_x = protocolPtr[hk_y][1]; break;
+                case 2:
+                    hk_x = protocolPtr[hk_y][2]; break;
+                case 3:
+                    hk_x = protocolPtr[hk_y][3]; break;
+                case 4:
+                    hk_x = protocolPtr[hk_y][4]; break;
+                default:
+                    hk_x = protocolPtr[hk_y][5];
+            }
         }
+        else hk_x = -1
         return hk_x;
     }
 
@@ -465,19 +475,22 @@ namespace huskylens {
     //% block="HuskyLens get from result |%index box parameter|%deta "
     //% weight=60
     export function readBox_ss(index:number, deta:Content3):number{
-            let hk_x
-        switch (deta) {
-            case 1:
-                hk_x = protocolPtr[index-1][1]; break;
-            case 2:
-                hk_x = protocolPtr[index-1][2]; break;
-            case 3:
-                hk_x = protocolPtr[index-1][3]; break;
-            case 4:
-                hk_x = protocolPtr[index-1][4]; break;
-            default:
-                hk_x = protocolPtr[index-1][5];
-        }
+        let hk_x
+         let hk_i=index-1
+         if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_BLOCK){
+            switch (deta) {
+                case 1:
+                    hk_x = protocolPtr[hk_i][1]; break;
+                case 2:
+                    hk_x = protocolPtr[hk_i][2]; break;
+                case 3:
+                    hk_x = protocolPtr[hk_i][3]; break;
+                case 4:
+                    hk_x = protocolPtr[hk_i][4]; break;
+                default:
+                    hk_x = protocolPtr[hk_i][5];
+            }
+         }else hk_x = -1;
         return hk_x;
     }
 
@@ -487,19 +500,22 @@ namespace huskylens {
      //% block="HuskyLens get from result |%index arrow parameter|%deta "
     //% weight=60
     export function readArrow_ss(index:number, deta:Content4):number{
-            let hk_x
-        switch (deta) {
-            case 1:
-                hk_x = protocolPtr[index-1][1]; break;
-            case 2:
-                hk_x = protocolPtr[index-1][2]; break;
-            case 3:
-                hk_x = protocolPtr[index-1][3]; break;
-            case 4:
-                hk_x = protocolPtr[index-1][4]; break;
-            default:
-                hk_x = protocolPtr[index-1][5];
-        }
+        let hk_x
+        let hk_i=index-1
+        if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_ARROW){
+            switch (deta) {
+                case 1:
+                    hk_x = protocolPtr[hk_i][1]; break;
+                case 2:
+                    hk_x = protocolPtr[hk_i][2]; break;
+                case 3:
+                    hk_x = protocolPtr[hk_i][3]; break;
+                case 4:
+                    hk_x = protocolPtr[hk_i][4]; break;
+                default:
+                    hk_x = protocolPtr[hk_i][5];
+            }
+        }else hk_x = -1;
         return hk_x;
     }
 
@@ -853,7 +869,6 @@ namespace huskylens {
                     }
             }
         }
-
         return distanceMinIndex
     }
 }
