@@ -1,14 +1,13 @@
 /** 
  * @file pxt-DFRobot_HuskyLens/huskylens.ts
  * @brief DFRobot's huskylens makecode library.
- * @n [Get the module here]()
- * @n 
+ * @n [Get the module here](https://github.com/DFRobot/pxt-DFRobot_HaskyLens)
  * 
  * @copyright    [DFRobot](http://www.dfrobot.com), 2016
  * @copyright    MIT Lesser General Public License
  * 
  * @author [email](jie.tang@dfrobot.com)
- * @version  V0.0.8
+ * @version  V0.0.
  * @date  2019-12-16
 */
 // 在此处添加您的代码
