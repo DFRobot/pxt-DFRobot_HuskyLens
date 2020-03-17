@@ -1,5 +1,5 @@
 /** 
- * @file pxt-huskylens/huskylens.ts
+ * @file pxt-DFRobot_HuskyLens/huskylens.ts
  * @brief DFRobot's huskylens makecode library.
  * @n [Get the module here]()
  * @n 
@@ -460,42 +460,46 @@ namespace huskylens {
         }
     }
 
-
+     /**
+      * @param index to index ,eg: 1
+   */
     //% block="HuskyLens get from result |%index box parameter|%deta "
     //% weight=60
     export function readBox_ss(index:number, deta:Content3):number{
             let hk_x
         switch (deta) {
             case 1:
-                hk_x = protocolPtr[index][1]; break;
+                hk_x = protocolPtr[index-1][1]; break;
             case 2:
-                hk_x = protocolPtr[index][2]; break;
+                hk_x = protocolPtr[index-1][2]; break;
             case 3:
-                hk_x = protocolPtr[index][3]; break;
+                hk_x = protocolPtr[index-1][3]; break;
             case 4:
-                hk_x = protocolPtr[index][4]; break;
+                hk_x = protocolPtr[index-1][4]; break;
             default:
-                hk_x = protocolPtr[index][5];
+                hk_x = protocolPtr[index-1][5];
         }
         return hk_x;
     }
 
-
+     /**
+      * @param index to index ,eg: 1
+   */
      //% block="HuskyLens get from result |%index arrow parameter|%deta "
     //% weight=60
     export function readArrow_ss(index:number, deta:Content4):number{
             let hk_x
         switch (deta) {
             case 1:
-                hk_x = protocolPtr[index][1]; break;
+                hk_x = protocolPtr[index-1][1]; break;
             case 2:
-                hk_x = protocolPtr[index][2]; break;
+                hk_x = protocolPtr[index-1][2]; break;
             case 3:
-                hk_x = protocolPtr[index][3]; break;
+                hk_x = protocolPtr[index-1][3]; break;
             case 4:
-                hk_x = protocolPtr[index][4]; break;
+                hk_x = protocolPtr[index-1][4]; break;
             default:
-                hk_x = protocolPtr[index][5];
+                hk_x = protocolPtr[index-1][5];
         }
         return hk_x;
     }
