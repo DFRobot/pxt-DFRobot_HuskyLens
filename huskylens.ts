@@ -7,7 +7,7 @@
  * @copyright    MIT Lesser General Public License
  * 
  * @author [email](jie.tang@dfrobot.com)
- * @version  V0.0.5
+ * @version  V0.0.6
  * @date  2020-3-17
 */
 // 在此处添加您的代码
@@ -142,10 +142,12 @@ namespace huskylens {
         protocolWriteCommand(protocolCommand.COMMAND_REQUEST)
         processReturn();
     }
+
     /**
      * @param ID to ID ,eg: 1
      * 
      */
+
     //% block="HuskyLens get from result ID|%ID have learned?"
     //% weight=75
     export function isLearned(ID: number): boolean {
@@ -156,7 +158,9 @@ namespace huskylens {
 
     /**
      * @param ID to ID ,eg: 1
+     * 
      */
+
     //% block="HuskyLens get from result ID |%ID |%Ht in picture?"
     //% weight=70
     export function isAppear(ID: number, Ht: HUSKYLENSResultType_t): boolean {
@@ -172,7 +176,9 @@ namespace huskylens {
 
     /**
      * @param ID to ID ,eg: 1
+     * 
      */
+
     //%block="HuskyLens get from result ID|%ID box parameter|%number1"
     //% weight=65
     export function readeBox(ID: number, number1: Content1): number {
@@ -197,10 +203,12 @@ namespace huskylens {
         return hk_x;
     }
     //
+
     /**
      * @param ID to ID ,eg: 1
      * @param index to index ,eg: 1
      */
+
     //%block="HuskyLens get from result ID|%ID|%index box parameter|%number1"
     //% weight=45
     //% advanced=true
@@ -260,6 +268,7 @@ namespace huskylens {
         return hk_x;
     }
     //
+
     /**
         * @param ID to ID ,eg: 1
         * @param index to index ,eg: 1
@@ -344,6 +353,7 @@ namespace huskylens {
     }
 
     //
+
     //%block="HuskyLens get from result studyed ID"
     //% weight=55
     //% advanced=true
@@ -351,6 +361,7 @@ namespace huskylens {
         return Protocol_t[2];
     }
     //
+
     //%block="HuskyLens get from result|%Httotal"
     //% weight=50
     //% advanced=true
