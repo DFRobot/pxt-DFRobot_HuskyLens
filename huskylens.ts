@@ -7,7 +7,6 @@
  * @copyright    MIT Lesser General Public License
  * 
  * @author [email](jie.tang@dfrobot.com)
- * @version  V0.0.6
  * @date  2020-3-17
 */
 // 在此处添加您的代码
@@ -101,7 +100,7 @@ enum protocolAlgorithm {
     //%block="Tag Recognition"
     ALGORITHM_TAG_RECOGNITION = 5
 }
-//% weight=100  color=#00A654 icon="\uf083"  block="Huskylens"
+//% weight=100  color=#e7660b icon="\uf083"  block="Huskylens"
 namespace huskylens {
     let protocolPtr: number[][] = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]
     let Protocol_t: number[] = [0, 0, 0, 0, 0, 0]
