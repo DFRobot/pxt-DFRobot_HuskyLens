@@ -422,6 +422,7 @@ namespace huskylens {
 
     //% block="HuskyLens get from result near the center box|%deta parameter "
     //% weight=60
+    //% advanced=true
     export function readBox_s(deta: Content3): number {
         let hk_x 
         let hk_y = readBlockCenterParameterDirect();
@@ -445,6 +446,7 @@ namespace huskylens {
 
     //% block="HuskyLens get from result near the center arrow|%deta parameter "
     //% weight=60
+    //% advanced=true
     export function readArrow_s(deta:Content4):number{
         let hk_x
         let hk_y = readArrowCenterParameterDirect()
@@ -468,6 +470,7 @@ namespace huskylens {
 
     //%block="HuskyLens get from result|%Htin picture?"
     //% weight=60
+    //% advanced=true
     export function isAppear_s(Ht:HUSKYLENSResultType_t):boolean{
          switch (Ht) {
             case 1:
@@ -484,6 +487,7 @@ namespace huskylens {
    */
     //% block="HuskyLens get from result |%index box parameter|%deta "
     //% weight=60
+    //% advanced=true
     export function readBox_ss(index:number, deta:Content3):number{
         let hk_x
          let hk_i=index-1
@@ -509,6 +513,7 @@ namespace huskylens {
    */
      //% block="HuskyLens get from result |%index arrow parameter|%deta "
     //% weight=60
+    //% advanced=true
     export function readArrow_ss(index:number, deta:Content4):number{
         let hk_x
         let hk_i=index-1
