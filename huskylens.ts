@@ -11,13 +11,13 @@
 */
 // 在此处添加您的代码
 enum Content1 {
-    //% block="xCenter"
+    //% block="X coordinates"
     xCenter = 1,
-    //% block="yCenter"
+    //% block="Y coordinates"
     yCenter = 2,
-    //% block="Length"
+    //% block="Object width"
     width = 3,
-    //% block="Width"
+    //% block="Object height"
     height = 4
 }
 //
@@ -34,13 +34,13 @@ enum Content2 {
 enum Content3 {
     //% block="ID"
     ID = 5,
-    //% block="xCenter"
+    //% block="X coordinates"
     xCenter = 1,
-    //% block="yCenter"
+    //% block="Y coordinates"
     yCenter = 2,
-    //% block="Length"
+    //% block="Object width"
     width = 3,
-    //% block="Width"
+    //% block="Object height"
     height = 4
 }
 enum Content4 {
