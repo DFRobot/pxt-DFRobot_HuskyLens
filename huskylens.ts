@@ -148,7 +148,7 @@ namespace huskylens {
      */
 
     //% block="HuskyLens get from result ID|%ID have learned?"
-    //% weight=75
+    //% weight=76
     export function isLearned(ID: number): boolean {
         let hk_x = countLearnedIDs();
         if (ID <= hk_x) return true;
@@ -161,7 +161,7 @@ namespace huskylens {
      */
 
     //% block="HuskyLens get from result ID |%ID |%Ht in picture?"
-    //% weight=70
+    //% weight=76
     export function isAppear(ID: number, Ht: HUSKYLENSResultType_t): boolean {
         switch (Ht) {
             case 1:
@@ -354,15 +354,14 @@ namespace huskylens {
     //
 
     //%block="HuskyLens get from result studyed ID"
-    //% weight=55
-    //% advanced=true
+    //% weight=79
     export function getIds(): number {
         return Protocol_t[2];
     }
     //
 
     //%block="HuskyLens get from result|%Httotal"
-    //% weight=50
+    //% weight=90
     //% advanced=true
     export function getBox(Ht: HUSKYLENSResultType_t): number {
         switch (Ht) {
@@ -379,7 +378,7 @@ namespace huskylens {
       * @param ID to ID ,eg: 1
    */
     //%block="KuskyLens get from result ID|%ID|%Httotal"
-    //% weight=45
+    //% weight=55
     //% advanced=true
     export function getBox_S(ID: number, Ht: HUSKYLENSResultType_t): number {
         switch (Ht) {
@@ -421,8 +420,7 @@ namespace huskylens {
 
 
     //% block="HuskyLens get from result near the center box|%deta parameter "
-    //% weight=60
-    //% advanced=true
+    //% weight=77
     export function readBox_s(deta: Content3): number {
         let hk_x 
         let hk_y = readBlockCenterParameterDirect();
@@ -445,8 +443,7 @@ namespace huskylens {
     }
 
     //% block="HuskyLens get from result near the center arrow|%deta parameter "
-    //% weight=60
-    //% advanced=true
+    //% weight=77
     export function readArrow_s(deta:Content4):number{
         let hk_x
         let hk_y = readArrowCenterParameterDirect()
@@ -469,8 +466,7 @@ namespace huskylens {
     }
 
     //%block="HuskyLens get from result|%Htin picture?"
-    //% weight=60
-    //% advanced=true
+    //% weight=78
     export function isAppear_s(Ht:HUSKYLENSResultType_t):boolean{
          switch (Ht) {
             case 1:
