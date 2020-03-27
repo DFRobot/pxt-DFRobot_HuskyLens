@@ -54,7 +54,7 @@ enum Content4 {
     xTarget = 3,
     //% block="yTarget"
     yTarget = 4
-    
+
 }
 //
 enum HUSKYLENSResultType_t {
@@ -165,9 +165,9 @@ namespace huskylens {
     export function isAppear(ID: number, Ht: HUSKYLENSResultType_t): boolean {
         switch (Ht) {
             case 1:
-                if (countBlocks(ID) != 0) return true;
+                return countBlocks(ID) != 0 ? true : false ;
             case 2:
-                if (countArrows(ID) != 0) return true;
+                return countArrows(ID) != 0 ? true : false;
             default:
                 return false;
         }
@@ -422,21 +422,21 @@ namespace huskylens {
     //% block="HuskyLens get from result near the center box|%deta parameter "
     //% weight=77
     export function readBox_s(deta: Content3): number {
-        let hk_x 
+        let hk_x
         let hk_y = readBlockCenterParameterDirect();
-        if(hk_y!=-1){
-             switch (deta) {
-            case 1:
-                hk_x = protocolPtr[hk_y][1]; break;
-            case 2:
-                hk_x = protocolPtr[hk_y][2]; break;
-            case 3:
-                hk_x = protocolPtr[hk_y][3]; break;
-            case 4:
-                hk_x = protocolPtr[hk_y][4]; break;
-            default:
-                hk_x = protocolPtr[hk_y][5];
-                }
+        if (hk_y != -1) {
+            switch (deta) {
+                case 1:
+                    hk_x = protocolPtr[hk_y][1]; break;
+                case 2:
+                    hk_x = protocolPtr[hk_y][2]; break;
+                case 3:
+                    hk_x = protocolPtr[hk_y][3]; break;
+                case 4:
+                    hk_x = protocolPtr[hk_y][4]; break;
+                default:
+                    hk_x = protocolPtr[hk_y][5];
+            }
         }
         else hk_x = -1
         return hk_x;
@@ -444,10 +444,10 @@ namespace huskylens {
 
     //% block="HuskyLens get from result near the center arrow|%deta parameter "
     //% weight=77
-    export function readArrow_s(deta:Content4):number{
+    export function readArrow_s(deta: Content4): number {
         let hk_x
         let hk_y = readArrowCenterParameterDirect()
-        if(hk_y!=-1){
+        if (hk_y != -1) {
             switch (deta) {
                 case 1:
                     hk_x = protocolPtr[hk_y][1]; break;
@@ -467,27 +467,27 @@ namespace huskylens {
 
     //%block="HuskyLens get from result|%Htin picture?"
     //% weight=78
-    export function isAppear_s(Ht:HUSKYLENSResultType_t):boolean{
-         switch (Ht) {
+    export function isAppear_s(Ht: HUSKYLENSResultType_t): boolean {
+        switch (Ht) {
             case 1:
-                if (countBlocks_s() != 0) return true;
+                return countBlocks_s() != 0 ? true:false;
             case 2:
-                if (countArrows_s() != 0) return true;
+                return countArrows_s() != 0 ? true:false;
             default:
                 return false;
         }
     }
 
-     /**
-      * @param index to index ,eg: 1
-   */
+    /**
+     * @param index to index ,eg: 1
+  */
     //% block="HuskyLens get from result |%index box parameter|%deta "
     //% weight=60
     //% advanced=true
-    export function readBox_ss(index:number, deta:Content3):number{
+    export function readBox_ss(index: number, deta: Content3): number {
         let hk_x
-         let hk_i=index-1
-         if (protocolPtr[0][0] == protocolCommand.COMMAND_RETURN_BLOCK){
+        let hk_i = index - 1
+        if (protocolPtr[0][0] == protocolCommand.COMMAND_RETURN_BLOCK) {
             switch (deta) {
                 case 1:
                     hk_x = protocolPtr[hk_i][1]; break;
@@ -500,20 +500,20 @@ namespace huskylens {
                 default:
                     hk_x = protocolPtr[hk_i][5];
             }
-         }else hk_x = -1;
+        } else hk_x = -1;
         return hk_x;
     }
 
-     /**
-      * @param index to index ,eg: 1
-   */
-     //% block="HuskyLens get from result |%index arrow parameter|%deta "
+    /**
+     * @param index to index ,eg: 1
+  */
+    //% block="HuskyLens get from result |%index arrow parameter|%deta "
     //% weight=60
     //% advanced=true
-    export function readArrow_ss(index:number, deta:Content4):number{
+    export function readArrow_ss(index: number, deta: Content4): number {
         let hk_x
-        let hk_i=index-1
-        if (protocolPtr[0][0] == protocolCommand.COMMAND_RETURN_ARROW){
+        let hk_i = index - 1
+        if (protocolPtr[0][0] == protocolCommand.COMMAND_RETURN_ARROW) {
             switch (deta) {
                 case 1:
                     hk_x = protocolPtr[hk_i][1]; break;
@@ -526,7 +526,7 @@ namespace huskylens {
                 default:
                     hk_x = protocolPtr[hk_i][5];
             }
-        }else hk_x = -1;
+        } else hk_x = -1;
         return hk_x;
     }
 
@@ -853,31 +853,31 @@ namespace huskylens {
         return null;
     }
 
-    function readBlockCenterParameterDirect():number{
+    function readBlockCenterParameterDirect(): number {
         let distanceMinIndex = -1;
         let distanceMin = 65535;
         for (let i = 0; i < Protocol_t[1]; i++) {
-            if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_BLOCK){
-                let distance = Math.round(Math.sqrt(Math.abs(protocolPtr[i][1]-320/2))) + Math.round(Math.sqrt(Math.abs(protocolPtr[i][2]-240/2)));
-                if (distance <distanceMin){
+            if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_BLOCK) {
+                let distance = Math.round(Math.sqrt(Math.abs(protocolPtr[i][1] - 320 / 2))) + Math.round(Math.sqrt(Math.abs(protocolPtr[i][2] - 240 / 2)));
+                if (distance < distanceMin) {
                     distanceMin = distance;
                     distanceMinIndex = i;
-                    }
+                }
             }
         }
         return distanceMinIndex
     }
 
-    function readArrowCenterParameterDirect():number{
+    function readArrowCenterParameterDirect(): number {
         let distanceMinIndex = -1;
         let distanceMin = 65535;
         for (let i = 0; i < Protocol_t[1]; i++) {
-            if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_ARROW){
-                let distance = Math.round(Math.sqrt(Math.abs(protocolPtr[i][1]-320/2))) + Math.round(Math.sqrt(Math.abs(protocolPtr[i][2]-240/2)));
-                if (distance <distanceMin){
+            if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_ARROW) {
+                let distance = Math.round(Math.sqrt(Math.abs(protocolPtr[i][1] - 320 / 2))) + Math.round(Math.sqrt(Math.abs(protocolPtr[i][2] - 240 / 2)));
+                if (distance < distanceMin) {
                     distanceMin = distance;
                     distanceMinIndex = i;
-                    }
+                }
             }
         }
         return distanceMinIndex
