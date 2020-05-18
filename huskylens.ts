@@ -100,7 +100,7 @@ enum protocolAlgorithm {
     //%block="Tag Recognition"
     ALGORITHM_TAG_RECOGNITION = 5
 }
-//% weight=100  color=#e7660b icon="\uf083"  block="Huskylens"
+//% weight=100  color=#e7660b icon="\uf083"  block="HuskyLens"
 namespace huskylens {
     let protocolPtr: number[][] = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]
     let Protocol_t: number[] = [0, 0, 0, 0, 0, 0]
@@ -143,8 +143,8 @@ namespace huskylens {
     }
 
     /**
+     * HuskyLens get from result ID have learned?
      * @param ID to ID ,eg: 1
-     * 
      */
 
     //% block="HuskyLens get from result ID|%ID have learned?"
@@ -156,8 +156,8 @@ namespace huskylens {
     }
 
     /**
+     * HuskyLens get from result ID box or arrow in picture?
      * @param ID to ID ,eg: 1
-     * 
      */
 
     //% block="HuskyLens get from result ID |%ID |%Ht in picture?"
@@ -174,8 +174,8 @@ namespace huskylens {
     }
 
     /**
+     * HuskyLens get from result ID box parameter.
      * @param ID to ID ,eg: 1
-     * 
      */
 
     //%block="HuskyLens get from result ID|%ID box parameter|%number1"
@@ -204,6 +204,7 @@ namespace huskylens {
     //
 
     /**
+     * HuskyLens get from result ID box parameter.
      * @param ID to ID ,eg: 1
      * @param index to index ,eg: 1
      */
@@ -237,6 +238,7 @@ namespace huskylens {
     //
 
     /**
+     * HuskyLens get from result ID arrow parameter.
      * @param ID to ID ,eg: 1
      */
 
@@ -269,9 +271,10 @@ namespace huskylens {
     //
 
     /**
-        * @param ID to ID ,eg: 1
-        * @param index to index ,eg: 1
-    */
+     * HuskyLens get from result ID arrow parameter.
+     * @param ID to ID ,eg: 1
+     * @param index to index ,eg: 1
+     */
 
     //%block="HuskyLens get from result ID|%ID|%index arrow parameter|%number1"
     //% weight=35
@@ -299,7 +302,9 @@ namespace huskylens {
         else hk_x = -1;
         return hk_x;
     }
-
+    /**
+     * HuskyLens initialize via I2C until success
+     */
     //%block="HuskyLens initialize via I2C until success"
     //% weight=90
     export function initI2c(): void {
@@ -324,7 +329,9 @@ namespace huskylens {
         basic.pause(500)
         basic.clearScreen()
     }
-
+    /**
+     * HuskyLens change mode algorithm until success.
+     */
     //%block="HuskyLens change|%mode algorithm until success"
     //% weight=85
     export function initMode(mode: protocolAlgorithm) {
@@ -351,15 +358,19 @@ namespace huskylens {
 
     }
 
-    //
-
+    
+    /**
+     * HuskyLens get from result studyed ID
+     */
     //%block="HuskyLens get from result studyed ID"
     //% weight=79
     export function getIds(): number {
         return Protocol_t[2];
     }
-    //
-
+    
+    /**
+     * HuskyLens get from result box or arrow total.
+     */
     //%block="HuskyLens get from result|%Httotal"
     //% weight=90
     //% advanced=true
@@ -373,11 +384,12 @@ namespace huskylens {
                 return 0;
         }
     }
-    //
+    
     /**
-      * @param ID to ID ,eg: 1
-   */
-    //%block="KuskyLens get from result ID|%ID|%Httotal"
+     * HuskyLens get from result ID box or arrow total.
+     * @param ID to ID ,eg: 1
+     */
+    //%block="HuskyLens get from result ID|%ID|%Httotal"
     //% weight=55
     //% advanced=true
     export function getBox_S(ID: number, Ht: HUSKYLENSResultType_t): number {
@@ -418,14 +430,16 @@ namespace huskylens {
 
     // }
 
-
-    //% block="HuskyLens get from result near the center box|%deta parameter "
+    /**
+     * HuskyLens get from result near the center box  data parameter.
+     */
+    //% block="HuskyLens get from result near the center box|%data parameter "
     //% weight=77
-    export function readBox_s(deta: Content3): number {
+    export function readBox_s(data: Content3): number {
         let hk_x
         let hk_y = readBlockCenterParameterDirect();
         if (hk_y != -1) {
-            switch (deta) {
+            switch (data) {
                 case 1:
                     hk_x = protocolPtr[hk_y][1]; break;
                 case 2:
@@ -441,14 +455,16 @@ namespace huskylens {
         else hk_x = -1
         return hk_x;
     }
-
-    //% block="HuskyLens get from result near the center arrow|%deta parameter "
+    /**
+     * HuskyLens get from result near the center arrow data parameter.
+     */
+    //% block="HuskyLens get from result near the center arrow|%data parameter "
     //% weight=77
-    export function readArrow_s(deta: Content4): number {
+    export function readArrow_s(data: Content4): number {
         let hk_x
         let hk_y = readArrowCenterParameterDirect()
         if (hk_y != -1) {
-            switch (deta) {
+            switch (data) {
                 case 1:
                     hk_x = protocolPtr[hk_y][1]; break;
                 case 2:
@@ -464,8 +480,10 @@ namespace huskylens {
         else hk_x = -1
         return hk_x;
     }
-
-    //%block="HuskyLens get from result|%Htin picture?"
+    /**
+     * HuskyLens get from result in picture box or arrow?
+     */
+    //%block="HuskyLens get from result|%Htin in picture?"
     //% weight=78
     export function isAppear_s(Ht: HUSKYLENSResultType_t): boolean {
         switch (Ht) {
@@ -479,16 +497,17 @@ namespace huskylens {
     }
 
     /**
+     * HuskyLens get from result index box parameter data.
      * @param index to index ,eg: 1
-  */
-    //% block="HuskyLens get from result |%index box parameter|%deta "
+     */
+    //% block="HuskyLens get from result |%index box parameter|%data "
     //% weight=60
     //% advanced=true
-    export function readBox_ss(index: number, deta: Content3): number {
+    export function readBox_ss(index: number, data: Content3): number {
         let hk_x
         let hk_i = index - 1
         if (protocolPtr[0][0] == protocolCommand.COMMAND_RETURN_BLOCK) {
-            switch (deta) {
+            switch (data) {
                 case 1:
                     hk_x = protocolPtr[hk_i][1]; break;
                 case 2:
@@ -505,16 +524,17 @@ namespace huskylens {
     }
 
     /**
+     * HuskyLens get from result index arrow parameter data.
      * @param index to index ,eg: 1
-  */
-    //% block="HuskyLens get from result |%index arrow parameter|%deta "
+    */
+    //% block="HuskyLens get from result |%index arrow parameter|%data "
     //% weight=60
     //% advanced=true
-    export function readArrow_ss(index: number, deta: Content4): number {
+    export function readArrow_ss(index: number, data: Content4): number {
         let hk_x
         let hk_i = index - 1
         if (protocolPtr[0][0] == protocolCommand.COMMAND_RETURN_ARROW) {
-            switch (deta) {
+            switch (data) {
                 case 1:
                     hk_x = protocolPtr[hk_i][1]; break;
                 case 2:
