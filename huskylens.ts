@@ -550,7 +550,6 @@ namespace huskylens {
         return hk_x;
     }
 
-    //
     function validateCheckSum() {
 
         let stackSumIndex = receive_buffer[3] + CONTENT_INDEX;
@@ -562,7 +561,7 @@ namespace huskylens {
 
         return (hk_sum == receive_buffer[stackSumIndex]);
     }
-    //
+
     function husky_lens_protocol_write_end() {
         if (send_fail) { return 0; }
         if (send_index + 1 >= FRAME_BUFFER_SIZE) { return 0; }
@@ -577,7 +576,7 @@ namespace huskylens {
         send_index++;
         return send_index;
     }
-    //
+    
     function husky_lens_protocol_write_begin(command = 0) {
         send_fail = false;
         send_buffer[HEADER_0_INDEX] = 0x55;
@@ -587,11 +586,10 @@ namespace huskylens {
         send_index = CONTENT_INDEX;
         return send_buffer;
     }
-    //
+    
     function protocolWrite(buffer: Buffer) {
         pins.i2cWriteBuffer(0x32, buffer, false);
     }
-    //
 
     function processReturn() {
         if (!wait(protocolCommand.COMMAND_RETURN_INFO)) return false;
@@ -606,8 +604,7 @@ namespace huskylens {
             else return false;
         }
         return true;
-    }
-    //   
+    }   
 
     function wait(command = 0) {
         timerBegin();
@@ -626,7 +623,7 @@ namespace huskylens {
         }
         return false;
     }
-    //
+    
     function husky_lens_protocol_read_begin(command = 0) {
         if (command == receive_buffer[COMMAND_INDEX]) {
             content_current = CONTENT_INDEX;
@@ -636,18 +633,18 @@ namespace huskylens {
         }
         return false;
     }
-    //
+    
     let timeOutDuration = 100;
     let timeOutTimer: number
     function timerBegin() {
         timeOutTimer = input.runningTimeMicros();
 
     }
-    //
+    
     function timerAvailable() {
         return (input.runningTimeMicros() - timeOutTimer > timeOutDuration);
     }
-    //
+    
     let m_i = 16
     function protocolAvailable() {
         let buf = pins.createBuffer(16)
@@ -664,7 +661,7 @@ namespace huskylens {
         }
         return false
     }
-    //
+    
     function husky_lens_protocol_receive(data: number): boolean {
         switch (receive_index) {
             case HEADER_0_INDEX:
@@ -697,7 +694,6 @@ namespace huskylens {
         return false;
     }
 
-    //
     function husky_lens_protocol_write_int16(content = 0) {
 
         let x: number = ((content.toString()).length)
@@ -706,7 +702,7 @@ namespace huskylens {
         send_buffer[send_index + 1] = (content >> 8) & 0xff;
         send_index += 2;
     }
-    // 
+    
     function protocolReadFiveInt16(command = 0) {
         if (husky_lens_protocol_read_begin(command)) {
             Protocol_t[0] = command;
@@ -722,7 +718,7 @@ namespace huskylens {
             return false;
         }
     }
-    //
+    
     function protocolReadFiveInt161(i: number, command = 0) {
         if (husky_lens_protocol_read_begin(command)) {
             protocolPtr[i][0] = command;
@@ -738,7 +734,6 @@ namespace huskylens {
             return false;
         }
     }
-    //
 
     function husky_lens_protocol_read_int16() {
         if (content_current >= content_end || content_read_end) { receive_fail = true; return 0; }
@@ -746,7 +741,7 @@ namespace huskylens {
         content_current += 2
         return result;
     }
-    //
+    
     function husky_lens_protocol_read_end() {
         if (receive_fail) {
             receive_fail = false;
@@ -754,11 +749,11 @@ namespace huskylens {
         }
         return content_current == content_end;
     }
-    // 
+     
     function countLearnedIDs() {
         return Protocol_t[2]
     }
-    //
+    
     function countBlocks(ID: number) {
         let counter = 0;
         for (let i = 0; i < Protocol_t[1]; i++) {
@@ -766,7 +761,7 @@ namespace huskylens {
         }
         return counter;
     }
-    //
+    
     function countBlocks_s() {
         let counter = 0;
         for (let i = 0; i < Protocol_t[1]; i++) {
@@ -774,7 +769,7 @@ namespace huskylens {
         }
         return counter;
     }
-    //
+    
     function countArrows(ID: number) {
         let counter = 0;
         for (let i = 0; i < Protocol_t[1]; i++) {
@@ -782,7 +777,7 @@ namespace huskylens {
         }
         return counter;
     }
-    //
+    
     function countArrows_s() {
         let counter = 0;
         for (let i = 0; i < Protocol_t[1]; i++) {
@@ -790,7 +785,7 @@ namespace huskylens {
         }
         return counter;
     }
-    //
+    
     function readKnock() {
         for (let i = 0; i < 5; i++) {
             protocolWriteCommand(protocolCommand.COMMAND_REQUEST_KNOCK);//I2C
@@ -811,8 +806,7 @@ namespace huskylens {
 
         return false;
     }
-    //
-    //
+    
     function protocolWriteCommand(command = 0) {
         Protocol_t[0] = command;
         let buffer = husky_lens_protocol_write_begin(Protocol_t[0]);
@@ -820,7 +814,7 @@ namespace huskylens {
         let Buffer = pins.createBufferFromArray(buffer);
         protocolWrite(Buffer);
     }
-    //
+    
     function protocolReadCommand(command = 0) {
         if (husky_lens_protocol_read_begin(command)) {
             Protocol_t[0] = command;
@@ -831,7 +825,7 @@ namespace huskylens {
             return false;
         }
     }
-    //
+    
     function writeAlgorithm(algorithmType: number) {
         protocolWriteOneInt16(algorithmType, protocolCommand.COMMAND_REQUEST_ALGORITHM);
         return wait(protocolCommand.COMMAND_RETURN_OK);
@@ -842,7 +836,6 @@ namespace huskylens {
         return wait(protocolCommand.COMMAND_RETURN_OK);
     }
 
-    //
     function protocolWriteOneInt16(algorithmType: number, command = 0) {
         let buffer = husky_lens_protocol_write_begin(command);
         husky_lens_protocol_write_int16(algorithmType);
@@ -850,6 +843,7 @@ namespace huskylens {
         let Buffer = pins.createBufferFromArray(buffer);
         protocolWrite(Buffer);
     }
+
     function cycle_block(ID: number, index = 1): number {
         let counter = 0;
         for (let i = 0; i < Protocol_t[1]; i++) {
@@ -861,6 +855,7 @@ namespace huskylens {
         }
         return null;
     }
+    
     function cycle_arrow(ID: number, index = 1): number {
         let counter = 0;
         for (let i = 0; i < Protocol_t[1]; i++) {
