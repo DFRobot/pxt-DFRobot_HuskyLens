@@ -9,7 +9,6 @@
  * @author [email](jie.tang@dfrobot.com)
  * @date  2020-3-17
 */
-// 在此处添加您的代码
 enum Content1 {
     //% block="X coordinates"
     xCenter = 1,
@@ -20,7 +19,7 @@ enum Content1 {
     //% block="Object height"
     height = 4
 }
-//
+
 enum Content2 {
     //% block=" xOrigin"
     xOrigin = 1,
@@ -31,6 +30,7 @@ enum Content2 {
     //% block="yTarget"
     yTarget = 4
 }
+
 enum Content3 {
     //% block="ID"
     ID = 5,
@@ -43,6 +43,7 @@ enum Content3 {
     //% block="Object height"
     height = 4
 }
+
 enum Content4 {
     //% block="ID"
     ID = 5,
@@ -56,7 +57,7 @@ enum Content4 {
     yTarget = 4
 
 }
-//
+
 enum HUSKYLENSResultType_t {
     //%block="box"
     HUSKYLENSResultBlock = 1,
