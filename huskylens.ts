@@ -2,6 +2,8 @@
  * @file pxt-DFRobot_HuskyLens/huskylens.ts
  * @brief DFRobot's huskylens makecode library.
  * @n [Get the module here](https://github.com/DFRobot/pxt-DFRobot_HaskyLens)
+ * @n HuskyLens is an easy-to-use ai vision sensor with six built-in functions: face recognition, object tracking, object recognition, line tracking, color recognition, and label (qr code) recognition. 
+      Only one button is needed to complete the AI training, which can get rid of tedious training and complicated visual algorithm, and make you more focused on the conception and implementation of the project.
  * 
  * @copyright    [DFRobot](http://www.dfrobot.com), 2016
  * @copyright    MIT Lesser General Public License
