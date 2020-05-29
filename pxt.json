@@ -10,8 +10,7 @@
         "README.md",
         "huskylens.ts",
         "_locales/zh-cn/Huskylens-strings.json",
-        "_locales/zh-tw/Huskylens-strings.json",
-        "enums.d.ts"
+        "_locales/zh-tw/Huskylens-strings.json"
     ],
     "testFiles": [
         "test.ts"

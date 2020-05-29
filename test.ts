@@ -1,11 +1,18 @@
-// 在此处测试；当此软件包作为插件使用时，将不会编译此软件包。
+
 huskylens.initI2c()
-huskylens.initMode(protocolAlgorithm.ALGORITHM_FACE_RECOGNITION)
+huskylens.initMode(protocolAlgorithm.ALGORITHM_OBJECT_TRACKING)
 basic.forever(function () {
     huskylens.request()
-    if (huskylens.isLearned(1)) {
-        if (huskylens.isAppear(1, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
-            serial.writeValue("BOX", huskylens.readeBox(1, Content1.xCenter))
+    if (huskylens.isAppear_s(HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
+        if (huskylens.isLearned(1)) {
+            serial.writeValue("x", huskylens.readeBox(1, Content1.xCenter))
+            serial.writeValue("y", huskylens.readeBox(1, Content1.yCenter))
+            serial.writeValue("k", huskylens.readeBox(1, Content1.width))
+            serial.writeValue("h", huskylens.readeBox(1, Content1.height))
+        } else {
+            serial.writeString("-1")
         }
+    } else {
+        serial.writeString("-1")
     }
 })
