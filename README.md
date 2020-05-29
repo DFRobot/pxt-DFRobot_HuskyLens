@@ -1,7 +1,6 @@
 # HuskyLens
 
-[HuskyLens is an easy-to-use AI vision sensor with six built-in functions: face recognition, object tracking, object recognition, line tracking, color recognition, and label (qr code) recognition.](https://www.dfrobot.com.cn/goods-2050.html)
-
+[HuskyLens is an easy-to-use AI vision sensor with six built-in functions: face recognition, object tracking, object recognition, line tracking, color recognition, and label (qr code) recognition.](https://www.dfrobot.com/product-1922.html?tracking=5e85a3437efac)
 ## Basic usage
 
 * HuskyLens Init I2C and select pattern.
