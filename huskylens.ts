@@ -308,12 +308,12 @@ namespace huskylens {
         else hk_x = -1;
         return hk_x;
     }
-    // /**
-    //  * HuskyLens init I2C until success
-    //  */
-    // //%block="HuskyLens initialize via I2C until success"
-    // //% weight=90
-    function initI2c(): void {
+    /**
+     * HuskyLens init I2C until success
+     */
+    //%block="HuskyLens initialize via I2C until success"
+    //% weight=90
+    export function initI2c(): void {
         while (!readKnock()) {
             basic.showLeds(`
                 # . . . #
@@ -876,5 +876,5 @@ namespace huskylens {
         return distanceMinIndex
     }
 
-    initI2c();
+    //initI2c();
 }
