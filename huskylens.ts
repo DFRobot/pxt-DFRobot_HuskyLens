@@ -103,6 +103,8 @@ enum protocolAlgorithm {
     //%block="Tag Recognition"
     ALGORITHM_TAG_RECOGNITION = 5
 }
+
+
 //% weight=100  color=#e7660b icon="\uf083"  block="HuskyLens"
 namespace huskylens {
     let protocolPtr: number[][] = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]]
@@ -133,6 +135,7 @@ namespace huskylens {
 
     let command: number
     let content: number
+    
 
     /**
      * HuskyLens requests data and stores it in the result.
@@ -305,12 +308,12 @@ namespace huskylens {
         else hk_x = -1;
         return hk_x;
     }
-    /**
-     * HuskyLens init I2C until success
-     */
-    //%block="HuskyLens initialize via I2C until success"
-    //% weight=90
-    export function initI2c(): void {
+    // /**
+    //  * HuskyLens init I2C until success
+    //  */
+    // //%block="HuskyLens initialize via I2C until success"
+    // //% weight=90
+    function initI2c(): void {
         while (!readKnock()) {
             basic.showLeds(`
                 # . . . #
@@ -872,4 +875,6 @@ namespace huskylens {
         }
         return distanceMinIndex
     }
+
+    initI2c();
 }
