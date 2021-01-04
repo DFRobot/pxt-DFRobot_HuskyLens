@@ -9,6 +9,7 @@
         "README.md",
         "huskylens.ts",
         "_locales/zh-cn/Huskylens-strings.json",
+		"i2c.cpp",
         "_locales/zh-tw/Huskylens-strings.json"
     ],
     "testFiles": [
