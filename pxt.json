@@ -9,12 +9,18 @@
         "README.md",
         "huskylens.ts",
         "_locales/zh-cn/Huskylens-strings.json",
-		"i2c.cpp",
-        "_locales/zh-tw/Huskylens-strings.json"
+        "i2c.cpp",
+        "_locales/zh-tw/Huskylens-strings.json",
+        "shims.d.ts",
+        "enums.d.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
+    "targetVersions": {
+        "target": "3.1.46",
+        "targetId": "microbit"
+    },
     "supportedTargets": [
         "microbit"
     ],

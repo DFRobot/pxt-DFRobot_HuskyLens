@@ -156,12 +156,18 @@ namespace huskylens {
     let content: number
     
 
+    //% advanced=true shim=i2c::init
+    function init(): void {
+        return;
+    }
+
     /**
      * HuskyLens init I2C until success
      */
     //%block="HuskyLens initialize I2C until success"
     //% weight=90
     export function initI2c(): void {
+        init();
         while(!readKnock());
 
         yes();
