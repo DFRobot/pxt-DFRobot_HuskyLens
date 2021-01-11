@@ -67,6 +67,15 @@ enum HUSKYLENSResultType_t {
     HUSKYLENSResultArrow = 2,
 }
 
+let FIRST = {
+        first: -1,
+        xCenter: -1,
+        xOrigin: -1,
+        protocolSize: -1,
+        algorithmType: -1,
+        requestID: -1,
+    };
+
 enum HUSKYLENSMode{
     //%block="save"
     SAVE,
@@ -260,8 +269,7 @@ namespace huskylens {
                 default:
                     hk_x = protocolPtr[hk_y][5];
             }
-        }
-        else hk_x = -1
+        }else hk_x = -1
         return hk_x;
     }
     /**
@@ -527,8 +535,7 @@ namespace huskylens {
     //% weight=28
     //% advanced=true
     export function writeName(id:number,name:string):void{
-        do
-        {
+        //do{
             let newname = name;
             let buffer = husky_lens_protocol_write_begin(0x2f);
             send_buffer[send_index] = id;
@@ -544,7 +551,7 @@ namespace huskylens {
             let length = husky_lens_protocol_write_end();
             let Buffer = pins.createBufferFromArray(buffer);
             protocolWrite(Buffer);
-        }while(!wait(protocolCommand.COMMAND_RETURN_OK));
+        //}while(!wait(protocolCommand.COMMAND_RETURN_OK));
     }
     /**
      * Display characters on the screen
@@ -558,8 +565,7 @@ namespace huskylens {
     //% x.min=0 x.max=319
     //% y.min=0 y.max=210
     export function writeOSD(name:string, x:number, y:number):void{
-        do
-        {
+        //do{
             let buffer = husky_lens_protocol_write_begin(0x34);
             send_buffer[send_index] = name.length;
             if(x>255){
@@ -577,9 +583,10 @@ namespace huskylens {
                 send_index ++;
             }
             let length = husky_lens_protocol_write_end();
+            //serial.writeNumber(length)
             let Buffer = pins.createBufferFromArray(buffer);
             protocolWrite(Buffer);
-        }while(!wait(protocolCommand.COMMAND_RETURN_OK));
+        //}while(!wait(protocolCommand.COMMAND_RETURN_OK));
     }
     /**
      * HuskyLens clear characters in the screen
