@@ -187,7 +187,8 @@ namespace huskylens {
     //%block="HuskyLens switch algorithm to %mode"
     //% weight=85
     export function initMode(mode: protocolAlgorithm) {
-        while (!writeAlgorithm(mode, protocolCommand.COMMAND_REQUEST_ALGORITHM));
+        writeAlgorithm(mode, protocolCommand.COMMAND_REQUEST_ALGORITHM)
+        while(!wait(protocolCommand.COMMAND_RETURN_OK));
         yes();
     }
     /**
@@ -515,7 +516,8 @@ namespace huskylens {
     //% weight=30
     //% advanced=true
     export function writeLearn1(id: number):void{
-        while(!writeAlgorithm(id, 0X36));
+        writeAlgorithm(id, 0X36)
+        //while(!wait(protocolCommand.COMMAND_RETURN_OK));
     }
     /**
      * Huskylens forget all learning data of the current algorithm
@@ -524,7 +526,8 @@ namespace huskylens {
     //% weight=29
     //% advanced=true
     export function forgetLearn():void{
-        while(!writeAlgorithm(0x47, 0X37));
+        writeAlgorithm(0x47, 0X37)
+        //while(!wait(protocolCommand.COMMAND_RETURN_OK));
     }
     /**
      * Set ID name
@@ -595,7 +598,8 @@ namespace huskylens {
     //% weight=26
     //% advanced=true
     export function clearOSD():void{
-        while(!writeAlgorithm(0x45, 0X35));
+        writeAlgorithm(0x45, 0X35);
+        //while(!wait(protocolCommand.COMMAND_RETURN_OK));
     }
     /**
      * Photos and screenshots
@@ -606,14 +610,18 @@ namespace huskylens {
     export function takePhotoToSDCard(request:HUSKYLENSphoto):void{
         switch(request){
         case HUSKYLENSphoto.PHOTO:
-            while(!writeAlgorithm(0x40, 0X30));
+            writeAlgorithm(0x40, 0X30)
+            //while(!wait(protocolCommand.COMMAND_RETURN_OK))
             break;
         case HUSKYLENSphoto.SCREENSHOT:
-            while(!writeAlgorithm(0x49, 0X39));
+            writeAlgorithm(0x49, 0X39)
+            //while(!wait(protocolCommand.COMMAND_RETURN_OK));
             break;
         default:
-            while(!writeAlgorithm(0x40, 0X30));
+            writeAlgorithm(0x40, 0X30)
+            //while(!wait(protocolCommand.COMMAND_RETURN_OK));
         } 
+        basic.pause(500)
     }
     /**
      * Save data model
@@ -625,14 +633,18 @@ namespace huskylens {
     export function saveModelToTFCard(command:HUSKYLENSMode,data:number):void{
        switch(command){
        case HUSKYLENSMode.SAVE:
-            while(!writeAlgorithm(data,0x32));
+            writeAlgorithm(data,0x32);
+            //while(!wait(protocolCommand.COMMAND_RETURN_OK));
             break;
         case HUSKYLENSMode.LOAD:
-            while(!writeAlgorithm(data,0x33));
+            writeAlgorithm(data,0x33);
+            //while(!wait(protocolCommand.COMMAND_RETURN_OK));
             break;
         default:
-            while(!writeAlgorithm(data,0x32));
+            writeAlgorithm(data,0x32);
+            //while(!wait(protocolCommand.COMMAND_RETURN_OK));
        }
+       basic.pause(500)
     }
 
     function validateCheckSum() {
@@ -676,6 +688,7 @@ namespace huskylens {
     
     function protocolWrite(buffer: Buffer) {
         pins.i2cWriteBuffer(0x32, buffer, false);
+        basic.pause(50)
     }
 
     function processReturn() {
@@ -697,6 +710,7 @@ namespace huskylens {
             if (protocolAvailable()) {
                 if (command) {
                     if (husky_lens_protocol_read_begin(command)) {
+                        //serial.writeNumber(0);
                         return true;
                     }
                 }
@@ -852,6 +866,7 @@ namespace huskylens {
         for (let i = 0; i < Protocol_t[1]; i++) {
             if (protocolPtr[i][0] == protocolCommand.COMMAND_RETURN_BLOCK) counter++;
         }
+        //serial.writeNumber(counter)
         return counter;
     }
     
@@ -910,9 +925,11 @@ namespace huskylens {
         }
     }
     
-    function writeAlgorithm(algorithmType : number,comemand = 0) {
+    function writeAlgorithm(algorithmType : number,comemand = 0){
         protocolWriteOneInt16(algorithmType, comemand);
-        return wait(protocolCommand.COMMAND_RETURN_OK);
+        //return true//wait(protocolCommand.COMMAND_RETURN_OK);
+        //while(!wait(protocolCommand.COMMAND_RETURN_OK));
+        //return true
     }
 
     function writeLearn(algorithmType: number) {
