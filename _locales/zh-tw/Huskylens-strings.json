@@ -43,7 +43,7 @@
     "huskylens.writeLearn1|block": "HuskyLens自動學習一次ID %id",
     "huskylens.forgetLearn|block": "HuskyLens遺忘當前算法的所有學習數據",
     "huskylens.writeName|block": "HuskyLens設定當前算法ID %id 名稱 %name",
-    "huskylens.writeOSD|block": "HuskyLens嫈幕疊加顯示文字 %name 在x %x y %y",
+    "huskylens.writeOSD|block": "HuskyLens螢幕疊加顯示文字 %name 在x %x y %y",
     "huskylens.clearOSD|block": "HuskyLens清除螢幕顯示的文字",
     "huskylens.takePhotoToSDCard|block": "HuskyLens觸發 %request 保存到SD卡",
     "HUSKYLENSphoto.PHOTO|block": "拍照",
