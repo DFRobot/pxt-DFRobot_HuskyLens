@@ -12,13 +12,14 @@
         "i2c.cpp",
         "_locales/zh-tw/Huskylens-strings.json",
         "shims.d.ts",
-        "enums.d.ts"
+        "enums.d.ts",
+        "main.py"
     ],
     "testFiles": [
         "test.ts"
     ],
     "targetVersions": {
-        "target": "4.0.16",
+        "target": "6.0.18",
         "targetId": "microbit"
     },
     "supportedTargets": [
