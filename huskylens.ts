@@ -362,7 +362,7 @@ namespace huskylens {
      * HuskyLens get the box or arrow total number from result.
      * 
      */
-    //%block="HuskyLens get a total number of %Httotal from the result"
+    //%block="HuskyLens get a total number of %Ht total from the result"
     //% weight=90
     //% advanced=true
     export function getBox(Ht: HUSKYLENSResultType_t): number {
@@ -433,7 +433,7 @@ namespace huskylens {
      * HuskyLens get the total number of box or arrow from result.
      * @param id to id ,eg: 1
      */
-    //%block="HuskyLens get a total number of ID %id %Httotal from the result"
+    //%block="HuskyLens get a total number of ID %id %Ht total from the result"
     //% weight=55
     //% advanced=true
     export function getBox_S(id: number, Ht: HUSKYLENSResultType_t): number {
