@@ -485,7 +485,7 @@ namespace huskylens {
     //%block="HuskyLens get $number1 of the ID $id No. $index arrow from the result"
     //% weight=35
     //% advanced=true
-    export function readeArrow_index(index: number, id: number, number1: Content2): number {
+    export function readeArrow_index(id: number, index: number, number1: Content2): number {
         let hk_y = cycle_arrow(id, index);
         let hk_x
         if (countArrows(id) != 0) {
