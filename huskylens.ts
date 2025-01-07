@@ -178,8 +178,6 @@ namespace huskylens {
     export function initI2c(): void {
         init();
         while(!readKnock());
-
-        yes();
     }
     /**
      * HuskyLens change mode algorithm until success.
@@ -189,7 +187,6 @@ namespace huskylens {
     export function initMode(mode: protocolAlgorithm) {
         writeAlgorithm(mode, protocolCommand.COMMAND_REQUEST_ALGORITHM)
         while(!wait(protocolCommand.COMMAND_RETURN_OK));
-        yes();
     }
     /**
      * HuskyLens requests data and stores it in the result.
